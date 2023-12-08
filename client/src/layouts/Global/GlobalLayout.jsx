@@ -69,6 +69,8 @@ function GlobalLayout() {
 
   const sitePath = pathname.split("/")[1];
 
+  const user = localStorage.getItem("user");
+
   const activePath = ["", undefined, null, " "].includes(sitePath)
     ? "home"
     : sitePath;
@@ -90,20 +92,24 @@ function GlobalLayout() {
           />
         </div>
         <div className="lnf-header-right">
-          <Space>
-            <Button
-              className="lnf-header-right-button"
-              onClick={handleLoginClick}
-            >
-              Login
-            </Button>
-            <Button
-              className="lnf-header-right-button"
-              onClick={handleRegisterClick}
-            >
-              Register
-            </Button>
-          </Space>
+          {user ? (
+            <div>Profile</div>
+          ) : (
+            <Space>
+              <Button
+                className="lnf-header-right-button"
+                onClick={handleLoginClick}
+              >
+                Login
+              </Button>
+              <Button
+                className="lnf-header-right-button"
+                onClick={handleRegisterClick}
+              >
+                Register
+              </Button>
+            </Space>
+          )}
         </div>
       </Header>
       <Content className="lnf-content">{<Outlet />}</Content>

@@ -36,6 +36,15 @@ function Registration() {
     }
   }, [status])
 
+  const user = localStorage.getItem('user')
+  const isLogged = localStorage.getItem('isLogged')
+
+  React.useEffect(() => {
+    if(user && isLogged) {
+      navigate('/profile')
+    }
+  }, [user, isLogged, navigate])
+
   const handleSubmitRegistrationForm = React.useCallback(
     (data) => {
       dispatch(registerUser(data));

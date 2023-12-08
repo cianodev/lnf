@@ -66,4 +66,20 @@ router.get("/user/delete", async (req, res) => {
     });
 });
 
+router.post("/user/login", async (req, res) => {
+  const credentials = req.body
+  
+  User.findOne(credentials)
+    .then((data) => {
+      if(data === null) {
+        res.status(500).json({ data, success: true, message: "User Not Found" });
+      } else {
+        res.status(200).json({ data, success: true, message: "User Found" });
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+});
+
 module.exports = router;
