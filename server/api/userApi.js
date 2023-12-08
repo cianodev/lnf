@@ -12,10 +12,21 @@ router.post("/user/add", async (req, res) => {
     .then((data) => {
       res
         .status(200)
-        .json({ data, success: true, message: "New User Created" });
+        .json({
+          data: { data, status: true },
+          success: true,
+          message: "New User Created",
+        });
     })
     .catch((error) => {
-      res.status(500).json({ data: null, success: false, message: error });
+      res.status(500).json({
+        data: null,
+        success: false,
+        message: {
+          message: "Error 500",
+          error,
+        },
+      });
     });
 });
 
