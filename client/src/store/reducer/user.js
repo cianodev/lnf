@@ -33,7 +33,7 @@ const { actions, reducer } = createSlice({
     successLogin: (state, { payload }) => {
       state.fetching = false;
       localStorage.setItem("isLogged", true);
-      localStorage.setItem("user", payload._id);
+      localStorage.setItem("user", JSON.stringify(payload));
 
       window.location.replace('/profile')
     },

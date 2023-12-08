@@ -1,6 +1,17 @@
 import * as React from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
-import { Layout, Menu, Space, Button, Typography, Row, Col, Input } from "antd";
+import {
+  Layout,
+  Menu,
+  Space,
+  Button,
+  Typography,
+  Avatar,
+  Row,
+  Col,
+  Input,
+} from "antd";
+import { UserOutlined } from "@ant-design/icons";
 
 const { Header, Content, Footer } = Layout;
 const { Title, Text, Link } = Typography;
@@ -69,7 +80,7 @@ function GlobalLayout() {
 
   const sitePath = pathname.split("/")[1];
 
-  const user = localStorage.getItem("user");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const activePath = ["", undefined, null, " "].includes(sitePath)
     ? "home"
@@ -93,7 +104,10 @@ function GlobalLayout() {
         </div>
         <div className="lnf-header-right">
           {user ? (
-            <div>Profile</div>
+            <Space size="large">
+              <Avatar icon={<UserOutlined />} />
+              <Text strong>{user.full_name}</Text>
+            </Space>
           ) : (
             <Space>
               <Button
