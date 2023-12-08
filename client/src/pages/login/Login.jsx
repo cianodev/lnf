@@ -77,7 +77,7 @@ function Login() {
                     className="lnf-login-account-btn"
                     type="secondary"
                     htmlType="submit"
-                    disabled={fetching}
+                    loading={fetching}
                   >
                     Login
                   </Button>

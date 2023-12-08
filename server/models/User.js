@@ -8,9 +8,15 @@ const UserSchema = new Schema({
   password: String,
   full_name: String,
   contact_info: String,
-  user_type: String, // 'admin' or 'regular'
+  user_type: {
+    type: String,
+    default: 'member',
+  }, // 'admin' or 'regular'
   email: String,
-  status: String, // 'active', 'inactive', 'banned'
+  status: {
+    type: String,
+    default: 'active',
+  }, // 'active', 'inactive', 'banned'
   avatar_url: String,
   date_created: {
     type: Date,

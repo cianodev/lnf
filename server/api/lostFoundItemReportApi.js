@@ -2,24 +2,31 @@ const express = require("express");
 const router = express.Router();
 const LostFoundItemReport = require("../models/LostFoundItemReport");
 
-router.post("/lostfounditemreport/add", (req, res) => {
+router.post("/lostFoundItemReport/add", (req, res) => {
   const newLostFoundItemReport = new LostFoundItemReport(req.body);
 
   newLostFoundItemReport
     .save()
     .then((data) => {
       res.status(200).json({
-        data,
+        data: { data, status: true },
         success: true,
-        message: "New LostFoundItemReport Created",
+        message: "New Lost Found Item Report Created",
       });
     })
     .catch((error) => {
-      res.status(500).json({ data: null, success: false, message: error });
+      res.status(500).json({
+        data: null,
+        success: false,
+        message: {
+          message: "Error 404",
+          error,
+        },
+      });
     });
 });
 
-router.get("/lostfounditemreport/get", (req, res) => {
+router.get("/lostFoundItemReport/get", (req, res) => {
   LostFoundItemReport.findById(req.query.id)
     .then((data) => {
       res
@@ -31,7 +38,7 @@ router.get("/lostfounditemreport/get", (req, res) => {
     });
 });
 
-router.post("/lostfounditemreport/update", (req, res) => {
+router.post("/lostFoundItemReport/update", (req, res) => {
   const { id, updated } = req.body;
 
   LostFoundItemReport.findOneAndUpdate({ _id: id }, updated, {
@@ -51,7 +58,7 @@ router.post("/lostfounditemreport/update", (req, res) => {
     });
 });
 
-router.get("/lostfounditemreport/delete", (req, res) => {
+router.get("/lostFoundItemReport/delete", (req, res) => {
   LostFoundItemReport.findOneAndDelete(req.query.id)
     .then((data) => {
       res.status(200).json({
