@@ -38,6 +38,18 @@ router.get("/lostFoundItemReport/get", (req, res) => {
     });
 });
 
+router.get("/lostFoundItemReport/all", (req, res) => {
+  LostFoundItemReport.find({})
+    .then((data) => {
+      res
+        .status(200)
+        .json({ data, success: true, message: "LostFoundItemReport Found" });
+    })
+    .catch((error) => {
+      res.status(500).json({ data: null, success: false, message: error });
+    });
+});
+
 router.post("/lostFoundItemReport/update", (req, res) => {
   const { id, updated } = req.body;
 
