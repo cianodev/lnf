@@ -15,7 +15,7 @@ function WhatWeDo() {
           </div>
 
           <div className="lnf-what-we-do-details">
-            <Text>Last Update MM/DD/YYYY</Text>
+            <Text>Last Update December 01, 2023</Text>
           </div>
         </div>
       </div>
