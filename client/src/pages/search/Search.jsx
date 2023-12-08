@@ -49,7 +49,8 @@ function Search() {
       <div className="lnf-search-header">
         <div>
           <div className="lnf-search-title">
-            <Title level={2}>Search Pages</Title>
+            <Title level={2}>Lost/Found errorItems</Title>
+            <Text>List of all items that are reported</Text>
           </div>
 
           <div>
