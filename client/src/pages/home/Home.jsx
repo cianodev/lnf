@@ -11,7 +11,10 @@ const { Title } = Typography;
 function Home() {
   const navigate = useNavigate();
 
-  const isLogged = localStorage.getItem('isLogged')
+  const [search, setSearch] = React.useState("");
+  const [address, setAddress] = React.useState("");
+
+  const isLogged = localStorage.getItem("isLogged");
 
   const handleReportFoundClick = React.useCallback(() => {
     navigate(isLogged ? "/report?type=found" : "/login");
@@ -20,6 +23,25 @@ function Home() {
   const handleReportLostClick = React.useCallback(() => {
     navigate(isLogged ? "/report?type=lost" : "/login");
   }, [navigate]);
+
+  const handleAddress = React.useCallback((event) => {
+    setAddress(event.target.value);
+  }, []);
+
+  const handleSearch = React.useCallback((event) => {
+    setSearch(event.target.value);
+  }, []);
+
+  const handleNavigateSearch = React.useCallback(() => {
+    const searchQuery =
+      search && address
+        ? `item=${search}&location=${address}`
+        : search && !address
+        ? `item=${search}`
+        : `location=${address}`;
+
+    navigate(`/search?${searchQuery}`);
+  }, [search, address]);
 
   return (
     <div className="lnf-home">
@@ -40,9 +62,24 @@ function Home() {
 
             <div>
               <Space>
-                <Input placeholder="Search Item" size="large" />
-                <Input placeholder="Location" size="large" />
-                <Button icon={<SearchOutlined />} size="large" type="primary" />
+                <Input
+                  placeholder="Search Item"
+                  size="large"
+                  onChange={handleSearch}
+                />
+                <Input
+                  placeholder="Location"
+                  size="large"
+                  onChange={handleAddress}
+                />
+                <Button
+                  className="lnf-home-btn"
+                  icon={<SearchOutlined />}
+                  size="large"
+                  type="primary"
+                  disabled={!search && !address}
+                  onClick={handleNavigateSearch}
+                />
               </Space>
             </div>
           </Space>
