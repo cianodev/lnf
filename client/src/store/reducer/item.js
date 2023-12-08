@@ -31,6 +31,9 @@ const { actions, reducer } = createSlice({
       state.message = payload.message;
       state.error = payload.error;
     },
+    resetStatus: (state) => {
+      state.status = false;
+    },
   },
 });
 
@@ -38,6 +41,7 @@ export const {
   initReport,
   successReport,
   errorReport,
+  resetStatus,
 } = actions;
 
 export const reportItem = (params) => async (dispatch) => {

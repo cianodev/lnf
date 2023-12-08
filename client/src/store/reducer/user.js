@@ -47,6 +47,9 @@ const { actions, reducer } = createSlice({
       state.fetching = false;
       state.error = payload;
     },
+    resetStatus: (state) => {
+      state.status = false;
+    },
   },
 });
 
@@ -57,6 +60,7 @@ export const {
   successUser,
   errorLogin,
   errorUser,
+  resetStatus,
 } = actions;
 
 export const registerUser = (params) => async (dispatch) => {

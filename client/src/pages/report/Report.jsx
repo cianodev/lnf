@@ -2,6 +2,8 @@ import * as React from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import { reportItem, resetStatus } from "@/store/reducer/item";
+
 import {
   Typography,
   Card,
@@ -15,7 +17,6 @@ import {
   Button,
   notification,
 } from "antd";
-import { reportItem } from "@/store/reducer/item";
 
 const { Title, Text } = Typography;
 
@@ -39,6 +40,9 @@ function Report() {
             The item submitted is now being reviewed by our staff.
           </div>
         ),
+        onClose: () => {
+          dispatch(resetStatus())
+        }
       });
 
       form.resetFields();

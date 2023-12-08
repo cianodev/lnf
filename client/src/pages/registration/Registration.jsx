@@ -13,7 +13,7 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { registerUser } from "@/store/reducer/user";
+import { registerUser, resetStatus } from "@/store/reducer/user";
 
 const { Title, Link, Text } = Typography;
 
@@ -32,6 +32,9 @@ function Registration() {
       api.success({
         message: 'New user created!',
         description: <div>Yay! Try <Link href="/login">log-in</Link> to the page.</div>,
+        onClose: () => {
+          dispatch(resetStatus())
+        }
       })
 
       form.resetFields();
