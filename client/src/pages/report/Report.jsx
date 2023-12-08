@@ -36,13 +36,11 @@ function Report() {
       api.success({
         message: "New Report created!",
         description: (
-          <div>
-            The item submitted is now being reviewed by our staff.
-          </div>
+          <div>The item submitted is now being reviewed by our staff.</div>
         ),
         onClose: () => {
-          dispatch(resetStatus())
-        }
+          dispatch(resetStatus());
+        },
       });
 
       form.resetFields();
@@ -91,13 +89,29 @@ function Report() {
             <Title level={4}>Item Information</Title>
             <Row gutter={[30, 0]}>
               <Col span={12}>
-                <Form.Item label="Title" name="title">
+                <Form.Item
+                  label="Title"
+                  name="title"
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
                   <Input size="large" />
                 </Form.Item>
               </Col>
 
               <Col span={12}>
-                <Form.Item label="Item Type" name="item_type">
+                <Form.Item
+                  label="Item Type"
+                  name="item_type"
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
                   <Radio.Group size="large">
                     <Radio.Button value="lost">Lost</Radio.Button>
                     <Radio.Button value="found">Found</Radio.Button>
@@ -106,7 +120,15 @@ function Report() {
               </Col>
 
               <Col span={12}>
-                <Form.Item label="Category" name="category">
+                <Form.Item
+                  label="Category"
+                  name="category"
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
                   <Select
                     size="large"
                     options={[
@@ -124,6 +146,11 @@ function Report() {
                 <Form.Item
                   label="Date and Time Lost/Found"
                   name="date_lost_found"
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
                 >
                   <DatePicker
                     size="large"
