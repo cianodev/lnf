@@ -11,12 +11,14 @@ const { Title } = Typography;
 function Home() {
   const navigate = useNavigate();
 
+  const isLogged = localStorage.getItem('isLogged')
+
   const handleReportFoundClick = React.useCallback(() => {
-    navigate("/report?found=true");
-  }, [navigate]);
+    navigate(isLogged ? "/report?type=found" : "/login");
+  }, [navigate, isLogged]);
 
   const handleReportLostClick = React.useCallback(() => {
-    navigate("/report?lost=true");
+    navigate(isLogged ? "/report?type=lost" : "/login");
   }, [navigate]);
 
   return (
