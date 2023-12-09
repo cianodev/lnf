@@ -106,7 +106,7 @@ function Search() {
       <div className="lnf-search-header">
         <div>
           <div className="lnf-search-title">
-            <Title level={2}>Lost/Found errorItems</Title>
+            <Title level={2}>Lost/Found Items</Title>
             <Text>List of all items that are reported</Text>
           </div>
 
