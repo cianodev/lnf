@@ -1,33 +1,62 @@
 import * as React from "react";
-import { Card, Row, Col, Typography, Form, Input, Button } from "antd";
+import {
+  Card,
+  Row,
+  Col,
+  Typography,
+  Form,
+  Input,
+  Button,
+  notification,
+} from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
-import { loginUser } from "@/store/reducer/user";
+import { loginUser, resetStatus } from "@/store/reducer/user";
 import { useNavigate } from "react-router-dom";
 
 const { Title, Link, Text } = Typography;
 
 function Login() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { fetching } = useSelector((state) => state.user)
+  const { fetching, error } = useSelector((state) => state.user);
 
-  const user = localStorage.getItem('user')
-  const isLogged = localStorage.getItem('isLogged')
+  const user = localStorage.getItem("user");
+  const isLogged = localStorage.getItem("isLogged");
+
+  const [api, contextHolder] = notification.useNotification();
 
   React.useEffect(() => {
-    if(user && isLogged) {
-      navigate('/profile')
+    if(error) {
+      notification.error({
+        message: error,
+        description: (
+          <div>Make sure you input the correct username/password.</div>
+        ),
+        onClose: () => {
+          dispatch(resetStatus());
+        },
+      });
     }
-  }, [user, isLogged, navigate])
+  }, [error]);
 
-  const handleSubmitLoginForm = React.useCallback((data) => {
-    dispatch(loginUser(data));
-  }, [dispatch, loginUser]);
+  React.useEffect(() => {
+    if (user && isLogged) {
+      navigate("/profile");
+    }
+  }, [user, isLogged, navigate]);
+
+  const handleSubmitLoginForm = React.useCallback(
+    (data) => {
+      dispatch(loginUser(data));
+    },
+    [dispatch, loginUser]
+  );
 
   return (
     <div className="lnf-login">
+      {contextHolder}
       <Row gutter={[40, 40]} className="lnf-login-wrapper">
         <Col span={12}>
           <Card className="lnf-login-card" bordered>

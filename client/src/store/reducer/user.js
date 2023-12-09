@@ -40,8 +40,8 @@ const { actions, reducer } = createSlice({
     errorUser: (state, { payload }) => {
       state.data = {};
       state.fetching = false;
-      state.message = payload.message;
-      state.error = payload.error;
+      state.message = payload;
+      state.error = payload;
     },
     errorLogin: (state, { payload }) => {
       state.fetching = false;
@@ -49,6 +49,7 @@ const { actions, reducer } = createSlice({
     },
     resetStatus: (state) => {
       state.status = false;
+      state.error = null;
     },
   },
 });
