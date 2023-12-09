@@ -10,6 +10,7 @@ import ContactUs from "@/pages/contactUs";
 import Login from "@/pages/login";
 import Report from "@/pages/report";
 import Claim from "@/pages/claim";
+import Profile from "@/pages/profile";
 
 const Pager = React.lazy(() => import("@/layouts/Global/Pager"));
 const GlobalLayout = React.lazy(() => import("@/layouts/Global/GlobalLayout"));
@@ -60,6 +61,10 @@ function Routes() {
               path: "/report",
               element: <Pager content={<Report />} title="Report an Item" />,
             },
+            {
+              path: "/profile",
+              element: <Pager content={<Profile />} tile="Profile" />,
+            }
           ],
         },
       ])}
