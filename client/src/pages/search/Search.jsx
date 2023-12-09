@@ -26,6 +26,7 @@ const { Title, Text } = Typography;
 
 import lostIcon from "@/assets/images/lost.svg";
 import foundIcon from "@/assets/images/found.svg";
+import { useSearchParams } from "react-router-dom";
 
 const categoryColor = Object.freeze({
   gadgets: "#1677ff",
@@ -38,11 +39,60 @@ const categoryColor = Object.freeze({
 function Search() {
   const dispatch = useDispatch();
 
-  const { items, fetching } = useSelector((state) => state.item);
+  const [searchParams] = useSearchParams();
 
+  const { items: allReportedItems, fetching } = useSelector(
+    (state) => state.item
+  );
+
+  const [search, setSearch] = React.useState(searchParams.get("item") || "");
+  const [dateLostFound, setDateLostFound] = React.useState("");
+  const [category, setCategory] = React.useState(null);
+  const [currentLocation, setCurrentLocation] = React.useState(
+    searchParams.get("location") || ""
+  );
+
+  const [items, setItems] = React.useState(allReportedItems || []);
   React.useEffect(() => {
     dispatch(getAllItems());
   }, [dispatch, getAllItems]);
+
+  React.useEffect(() => {
+    setItems(allReportedItems);
+  }, [allReportedItems]);
+
+  React.useEffect(() => {}, [searchParams]);
+
+  const handleSearch = React.useCallback((event) => {
+    setSearch(event.target.value);
+  }, []);
+
+  const handleDateLostFound = React.useCallback((event) => {
+    setDateLostFound(event);
+  }, []);
+
+  const handleCategory = React.useCallback((event) => {
+    setCategory(event);
+  }, []);
+
+  const handleCurrentLocation = React.useCallback((event) => {
+    setCurrentLocation(event.target.value);
+  }, []);
+
+  const handleFilterItems = React.useCallback(() => {
+    const filteredValues = allReportedItems.filter(
+      (data) =>
+        data.title.toLowerCase().includes(search.toLowerCase()) &&
+        data.specific_location
+          .toLowerCase()
+          .includes(currentLocation.toLowerCase()) &&
+        data.category.toLowerCase().includes(category.toLowerCase())
+    );
+
+    // moment(data.date_lost_found ).format('L') === moment(dateLostFound).format('L')
+
+    setItems(filteredValues);
+  }, [allReportedItems, search, location, category, dateLostFound]);
 
   return (
     <div className="lnf-search">
@@ -56,7 +106,12 @@ function Search() {
           <div>
             <Row gutter={[8, 8]}>
               <Col span={6}>
-                <Input size="large" placeholder="Search Item" />
+                <Input
+                  size="large"
+                  placeholder="Search Item"
+                  value={search}
+                  onChange={handleSearch}
+                />
               </Col>
 
               <Col span={5}>
@@ -64,6 +119,8 @@ function Search() {
                   size="large"
                   style={{ width: "100%" }}
                   placeholder="When"
+                  value={dateLostFound}
+                  onChange={handleDateLostFound}
                 />
               </Col>
 
@@ -79,15 +136,27 @@ function Search() {
                     { value: "books", label: "Books" },
                     { value: "others", label: "Others" },
                   ]}
+                  value={category}
+                  onChange={handleCategory}
                 />
               </Col>
 
               <Col span={6}>
-                <Input size="large" placeholder="Location" />
+                <Input
+                  onChange={handleCurrentLocation}
+                  value={currentLocation}
+                  size="large"
+                  placeholder="Location"
+                />
               </Col>
 
               <Col span={1}>
-                <Button icon={<SearchOutlined />} size="large" type="primary" />
+                <Button
+                  icon={<SearchOutlined />}
+                  size="large"
+                  type="primary"
+                  onClick={handleFilterItems}
+                />
               </Col>
             </Row>
           </div>
