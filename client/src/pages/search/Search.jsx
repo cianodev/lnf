@@ -62,8 +62,6 @@ function Search() {
     setItems(allReportedItems);
   }, [allReportedItems]);
 
-  React.useEffect(() => {}, [searchParams]);
-
   const handleSearch = React.useCallback((event) => {
     setSearch(event.target.value);
   }, []);
@@ -86,17 +84,13 @@ function Search() {
     const _category = category === null ? "" : category;
 
     const filteredValues = allReportedItems.filter(
-      (data) =>
-        data.title?.toLowerCase().includes(_search?.toLowerCase()) &&
-        data.specific_location
-          ?.toLowerCase()
-          .includes(_currentLocation?.toLowerCase()) &&
-        data.category?.toLowerCase().includes(_category?.toLowerCase())
+      (data) => console.log(moment(data.date_lost_found ).format('L'), dateLostFound)
+        // data.title?.toLowerCase().includes(_search?.toLowerCase()) &&
+        // data.specific_location
+        //   ?.toLowerCase()
+        //   .includes(_currentLocation?.toLowerCase()) &&
+        // data.category?.toLowerCase().includes(_category?.toLowerCase())
     );
-
-    console.log(allReportedItems, search, category);
-
-    // moment(data.date_lost_found ).format('L') === moment(dateLostFound).format('L')
 
     setItems(filteredValues);
   }, [allReportedItems, currentLocation, search, category, dateLostFound]);
