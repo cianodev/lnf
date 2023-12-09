@@ -84,7 +84,7 @@ function Report() {
           }}
         >
           <Card className="lnf-report-content-card">
-            <Title level={4}>Item Picture</Title>
+            {/* <Title level={4}>Item Picture</Title> */}
 
             <Title level={4}>Item Information</Title>
             <Row gutter={[30, 0]}>
