@@ -81,19 +81,25 @@ function Search() {
   }, []);
 
   const handleFilterItems = React.useCallback(() => {
+    const _currentLocation = currentLocation === null ? "" : currentLocation;
+    const _search = search === null ? "" : search;
+    const _category = category === null ? "" : category;
+
     const filteredValues = allReportedItems.filter(
       (data) =>
-        data.title?.toLowerCase().includes(search?.toLowerCase()) &&
+        data.title?.toLowerCase().includes(_search?.toLowerCase()) &&
         data.specific_location
           ?.toLowerCase()
-          .includes(currentLocation?.toLowerCase()) &&
-        data.category?.toLowerCase().includes(category?.toLowerCase())
+          .includes(_currentLocation?.toLowerCase()) &&
+        data.category?.toLowerCase().includes(_category?.toLowerCase())
     );
+
+    console.log(allReportedItems, search, category);
 
     // moment(data.date_lost_found ).format('L') === moment(dateLostFound).format('L')
 
     setItems(filteredValues);
-  }, [allReportedItems, search, location, category, dateLostFound]);
+  }, [allReportedItems, currentLocation, search, category, dateLostFound]);
 
   return (
     <div className="lnf-search">
@@ -221,7 +227,7 @@ function Search() {
               ))
             ) : (
               <div className="lnf-search-content-card-footer-empty">
-              <Empty />
+                <Empty />
               </div>
             )}
           </Row>
