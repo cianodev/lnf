@@ -10,6 +10,7 @@ import {
   Row,
   Col,
   Input,
+  Popover,
 } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
@@ -41,6 +42,13 @@ function GlobalLayout() {
     [navigate]
   );
 
+  const handleLogout = React.useCallback(() => {
+    localStorage.removeItem('isLogged')
+    localStorage.removeItem('user')
+
+    navigate('/')
+  }, [navigate, localStorage])
+
   const navigation = Object.freeze([
     {
       key: "home",
@@ -63,6 +71,19 @@ function GlobalLayout() {
       onClick: handleClick,
     },
   ]);
+
+  const content = React.useMemo(() => {
+    return (
+      <div style={{ width: 250 }}>
+        <Space direction="vertical" style={{ width: "100%" }}>
+          <Button block href="/profile">
+            Profile
+          </Button>
+          <Button block onClick={handleLogout}>Logout</Button>
+        </Space>
+      </div>
+    );
+  }, []);
 
   const onSearch = (value, _e, info) => console.log(info?.source, value);
 
@@ -104,10 +125,12 @@ function GlobalLayout() {
         </div>
         <div className="lnf-header-right">
           {user ? (
-            <Space size="large">
-              <Avatar icon={<UserOutlined />} />
-              <Text strong>{user.full_name}</Text>
-            </Space>
+            <Popover content={content} trigger="click" placement="bottomRight">
+              <Space size="large">
+                <Avatar icon={<UserOutlined />} />
+                <Text strong>{user.full_name}</Text>
+              </Space>
+            </Popover>
           ) : (
             <Space>
               <Button

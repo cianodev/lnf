@@ -30,25 +30,29 @@ function Registration() {
   React.useEffect(() => {
     if (status) {
       api.success({
-        message: 'New user created!',
-        description: <div>Yay! Try <Link href="/login">log-in</Link> to the page.</div>,
+        message: "New user created!",
+        description: (
+          <div>
+            Yay! Try <Link href="/login">log-in</Link> to the page.
+          </div>
+        ),
         onClose: () => {
-          dispatch(resetStatus())
-        }
-      })
+          dispatch(resetStatus());
+        },
+      });
 
       form.resetFields();
     }
-  }, [status])
+  }, [status]);
 
-  const user = localStorage.getItem('user')
-  const isLogged = localStorage.getItem('isLogged')
+  const user = localStorage.getItem("user");
+  const isLogged = localStorage.getItem("isLogged");
 
   React.useEffect(() => {
-    if(user && isLogged) {
-      navigate('/profile')
+    if (user && isLogged) {
+      navigate("/profile");
     }
-  }, [user, isLogged, navigate])
+  }, [user, isLogged, navigate]);
 
   const handleSubmitRegistrationForm = React.useCallback(
     (data) => {
