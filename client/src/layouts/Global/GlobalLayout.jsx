@@ -74,12 +74,12 @@ function GlobalLayout() {
 
   const content = React.useMemo(() => {
     return (
-      <div style={{ width: 250 }}>
+      <div style={{ width: 200 }}>
         <Space direction="vertical" style={{ width: "100%" }}>
-          <Button block href="/profile">
+          <Button block href="/profile" type="text">
             Profile
           </Button>
-          <Button block onClick={handleLogout}>Logout</Button>
+          <Button block onClick={handleLogout} type="text">Logout</Button>
         </Space>
       </div>
     );
