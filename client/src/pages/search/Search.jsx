@@ -14,6 +14,7 @@ import {
   Space,
   Select,
   Badge,
+  Empty,
 } from "antd";
 
 import { CalendarOutlined, CodepenOutlined } from "@ant-design/icons";
@@ -172,51 +173,57 @@ function Search() {
         </Row>
         <div className="lnf-search-content-card-footer">
           <Row gutter={[16, 16]}>
-            {items.map((item) => (
-              <Col span={8} key={item._id}>
-                <Badge.Ribbon
-                  text={_.capitalize(item.item_type)}
-                  color={item.item_type === "lost" ? "#ffadd2" : "#b7eb8f"}
-                >
-                  <Card
-                    hoverable
-                    bordered
-                    cover={
-                      <img
-                        style={{
-                          padding: "5rem",
-                          backgroundColor:
-                            item.item_type === "lost" ? "#fff0f6" : "#f6ffed",
-                        }}
-                        alt="example"
-                        src={item.item_type === "lost" ? lostIcon : foundIcon}
-                      />
-                    }
+            {items.length > 0 ? (
+              items.map((item) => (
+                <Col span={8} key={item._id}>
+                  <Badge.Ribbon
+                    text={_.capitalize(item.item_type)}
+                    color={item.item_type === "lost" ? "#ffadd2" : "#b7eb8f"}
                   >
-                    <div className="lnf-search-content-card-footer">
-                      <Title level={5}>{_.capitalize(item.title)}</Title>
-                      <div>
-                        <Space>
-                          <CalendarOutlined />
-                          <Text>
-                            {moment(item.date_lost_found).format("LLL")}
-                          </Text>
-                        </Space>
+                    <Card
+                      hoverable
+                      bordered
+                      cover={
+                        <img
+                          style={{
+                            padding: "5rem",
+                            backgroundColor:
+                              item.item_type === "lost" ? "#fff0f6" : "#f6ffed",
+                          }}
+                          alt="example"
+                          src={item.item_type === "lost" ? lostIcon : foundIcon}
+                        />
+                      }
+                    >
+                      <div className="lnf-search-content-card-footer">
+                        <Title level={5}>{_.capitalize(item.title)}</Title>
+                        <div>
+                          <Space>
+                            <CalendarOutlined />
+                            <Text>
+                              {moment(item.date_lost_found).format("LLL")}
+                            </Text>
+                          </Space>
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="lnf-search-content-card-footer-button">
-                      <Tag
-                        icon={<CodepenOutlined />}
-                        color={categoryColor[item.category]}
-                      >
-                        {_.capitalize(item.category)}
-                      </Tag>
-                    </div>
-                  </Card>
-                </Badge.Ribbon>
-              </Col>
-            ))}
+                      <div className="lnf-search-content-card-footer-button">
+                        <Tag
+                          icon={<CodepenOutlined />}
+                          color={categoryColor[item.category]}
+                        >
+                          {_.capitalize(item.category)}
+                        </Tag>
+                      </div>
+                    </Card>
+                  </Badge.Ribbon>
+                </Col>
+              ))
+            ) : (
+              <div className="lnf-search-content-card-footer-empty">
+              <Empty />
+              </div>
+            )}
           </Row>
         </div>
       </div>
