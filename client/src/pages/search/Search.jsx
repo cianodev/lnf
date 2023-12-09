@@ -83,11 +83,11 @@ function Search() {
   const handleFilterItems = React.useCallback(() => {
     const filteredValues = allReportedItems.filter(
       (data) =>
-        data.title.toLowerCase().includes(search.toLowerCase()) &&
+        data.title?.toLowerCase().includes(search?.toLowerCase()) &&
         data.specific_location
-          .toLowerCase()
-          .includes(currentLocation.toLowerCase()) &&
-        data.category.toLowerCase().includes(category.toLowerCase())
+          ?.toLowerCase()
+          .includes(currentLocation?.toLowerCase()) &&
+        data.category?.toLowerCase().includes(category?.toLowerCase())
     );
 
     // moment(data.date_lost_found ).format('L') === moment(dateLostFound).format('L')
