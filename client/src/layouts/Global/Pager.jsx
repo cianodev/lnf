@@ -4,7 +4,7 @@ import useDocumentTitle from "@/hooks/useDocumentTitle";
 import _ from "lodash";
 
 function Pager({ title, content }) {
-  const titlePrefix = "Lost'N Found";
+  const titlePrefix = "USCFoundIt";
   useDocumentTitle(
     _.isEmpty(title) ? titlePrefix : `${title} - ${titlePrefix}`
   );

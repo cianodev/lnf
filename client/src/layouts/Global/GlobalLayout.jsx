@@ -112,7 +112,7 @@ function GlobalLayout() {
       <Header className="lnf-header">
         <div className="lnf-header-left">
           <Title level={4} onClick={handleLogoClick}>
-            LostN&apos; Found
+            USCFoundIt
           </Title>
         </div>
         <div className="lnf-header-center">
@@ -151,11 +151,11 @@ function GlobalLayout() {
       </Header>
       <Content className="lnf-content">{<Outlet />}</Content>
       <Footer className="lnf-footer">
-        <Row gutter={[48, 48]}>
+      <Row gutter={[48, 48]} justify="center" align="middle">
           {/* Title */}
           <Col span={4}>
             <Title className="text" level={4}>
-              Lost&apos;N Found
+              USCFoundIt
             </Title>
           </Col>
           {/* Navigation */}
@@ -274,23 +274,7 @@ function GlobalLayout() {
               </Col>
             </Row>
           </Col>
-          {/* News letter */}
-          <Col span={8}>
-            <Row gutter={[16, 16]}>
-              <Col span={24}>
-                <Title className="text">Subscribe to get latest updates</Title>
-              </Col>
-              <Col span={24}>
-                <Search
-                  placeholder="Your Email"
-                  allowClear
-                  enterButton="Search"
-                  size="large"
-                  onSearch={onSearch}
-                />
-              </Col>
-            </Row>
-          </Col>
+      
         </Row>
       </Footer>
     </Layout>
