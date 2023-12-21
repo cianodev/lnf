@@ -1,0 +1,323 @@
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("../fonts/proxima_regular.woff") format("woff");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("../fonts/proxima_bold.woff") format("woff");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("../fonts/proxima_semibold.woff") format("woff");
+  font-weight: 600;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin-bottom: 0 !important;
+}
+
+#root {
+  min-height: 100vh;
+
+  // header
+  .lnf-header {
+    display: flex;
+    justify-content: space-between;
+    .lnf-header-left {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .lnf-header-center {
+      .lnf-header-center-menu {
+        width: 26rem;
+      }
+    }
+
+    .lnf-header-right {
+      .lnf-header-right-button {
+        background-color: #000;
+        color: #fff;
+      }
+    }
+  }
+
+  // content
+  .lnf-content {
+    min-height: calc(100vh - 26.78rem);
+  }
+
+  // footer
+  .lnf-footer {
+    .text {
+      color: #fff;
+    }
+
+    .text-hoverable {
+      color: #fff;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.lnf-home {
+  .lnf-home-banner {
+    background-image: url("../images/background.svg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    width: 100%;
+    padding: 12rem 12rem;
+    align-items: center;
+    display: flex;
+
+    .text-strong {
+      font-weight: 800;
+      color: #fff;
+    }
+  }
+
+  .lnf-home-content {
+    background-color: #fcedc6;
+    padding: 5rem 12rem;
+
+    .lnf-home-content-header {
+      margin-bottom: 2rem;
+    }
+
+    .lnf-home-content-card {
+      background-color: #f2c94c;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .lnf-home-btn {
+    background-color: #ffe186;
+  }
+}
+
+.lnf-registration {
+  padding: 5rem 12rem;
+
+  .lnf-registration-wrapper {
+    display: flex;
+    align-items: center;
+
+    .lnf-registration-card {
+      background-color: #ffe186;
+
+      .lnf-registration-card-title {
+        margin-bottom: 1.5rem;
+      }
+
+      .lnf-registration-footer {
+        display: flex;
+        align-items: center;
+        .text-hoverable {
+          color: #000;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .justify-button-end {
+          display: flex;
+          justify-content: flex-end;
+
+          .lnf-create-account-btn {
+            background-color: #25ff01;
+          }
+        }
+      }
+    }
+  }
+}
+
+.lnf-login {
+  padding: 5rem 12rem;
+
+  .lnf-login-wrapper {
+    display: flex;
+    align-items: center;
+
+    .lnf-login-card {
+      background-color: #ffe186;
+
+      .lnf-login-card-title {
+        margin-bottom: 1.5rem;
+      }
+
+      .lnf-login-footer {
+        display: flex;
+        align-items: center;
+        .text-hoverable {
+          color: #000;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .justify-button-end {
+          display: flex;
+          justify-content: flex-end;
+
+          .lnf-login-account-btn {
+            background-color: #25ff01;
+          }
+        }
+      }
+
+      .lnf-login-banner {
+        margin-top: 1rem;
+        .lnf-login-banner-header {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.lnf-search {
+  .lnf-search-header {
+    padding: 5rem 12rem;
+
+    .lnf-search-title {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .lnf-search-content {
+    background-color: #fff;
+    padding: 2rem 12rem;
+    min-height: calc(100vh - 43.7rem);
+
+    .lnf-search-content-title {
+      margin-bottom: 1rem;
+    }
+
+    .lnf-search-content-card-footer {
+      .lnf-search-content-card-footer-tag {
+        margin: 0.5rem 0;
+      }
+      
+      .lnf-search-content-card-footer-button {
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 1.5rem;
+      }
+
+      .lnf-search-content-card-footer-empty {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.lnf-what-we-do {
+  .lnf-what-we-do-header {
+    padding: 5rem 12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .lnf-what-we-do-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .lnf-what-we-do-content {
+    background-color: #fff;
+    padding: 2rem 12rem;
+    min-height: calc(100vh - 42.7rem);
+
+    .lnf-what-we-do-content-title {
+      margin-bottom: 1.5rem;
+    }
+
+    .lnf-what-we-do-content-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.lnf-contact-us {
+  .lnf-contact-us-header {
+    padding: 5rem 12rem;
+
+    .lnf-contact-us-socials {
+      margin-top: 1rem;
+    }
+  }
+
+  .lnf-contact-us-content {
+    background-color: #fff;
+    padding: 6rem 20rem;
+    min-height: calc(100vh - 51.7rem);
+  }
+}
+
+.lnf-not-found {
+  padding: 5rem;
+}
+
+.lnf-report {
+  .lnf-report-header {
+    padding: 5rem 12rem;
+  }
+
+  .lnf-report-content {
+    background-color: #fff;
+    padding: 6rem 20rem;
+    min-height: calc(100vh - 51.7rem);
+
+    .lnf-report-content-card {
+      background-color: #f2c94c;
+
+      .lnf-report-content-card-button-wrapper {
+        display: flex;
+        justify-content: center;
+        .lnf-report-content-card-button-wrapper-button {
+          background-color: #25ff01;
+        }
+      }
+    }
+  }
+}
+
+.lnf-claim {
+}
+
+.lnf-profile {
+  .lnf-profile-header {
+    padding: 5rem 12rem;
+  }
+}
